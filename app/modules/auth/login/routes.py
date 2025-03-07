@@ -1,7 +1,6 @@
 from fastapi import APIRouter,HTTPException
 from .schemas import UserLogin
 from core import db
-import json
 import hashlib
 router = APIRouter()
 @router.get("/login", response_model=UserLogin)
@@ -20,4 +19,5 @@ def login(username:str,password:str):
         if user['verify']!=hex:
             raise HTTPException(422,"验证失败.")
         else:
+            # 备注:需要根据情况返回数据
             return user
